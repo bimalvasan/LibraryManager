@@ -1,4 +1,8 @@
-function GetAllBooks() {
+import { Category } from './enums';
+import { Book, DamageLogger, Person, Author, Librarian } from './interfaces';
+import { UniversityLibrarian } from './classes';
+
+function GetAllBooks(): Book[] {
 
     let books = [
         { id: 1, title: 'Ulysses', author: 'James Joyce', available: true, category: Category.Fiction },
@@ -27,8 +31,6 @@ function LogFirstAvailable(books = GetAllBooks()): void {
     console.log('First Available: ' + firstAvailable);
 }
 
-enum Category { Biography, Poetry, Fiction, History, Children }
-
 function GetBookTitlesByCategory(categoryFilter: Category = Category.Fiction): Array<string> {
     console.log('Getting books in category: ' + categoryFilter + ' - ' + Category[categoryFilter]);
 
@@ -50,7 +52,7 @@ function LogBookTitles(titles: string[]): void {
     }
 }
 
-function GetBookByID(id: number) {
+function GetBookByID(id: number): Book {
     const allBooks = GetAllBooks();
 
     return allBooks.filter(book => book.id === id)[0];
@@ -114,32 +116,59 @@ function GetTitles(bookProp: any): string[] {
     return foundTitles;
 }
 
-let hermansBooks = GetTitles('Herman Melville');
-hermansBooks.forEach(title => console.log(title));
+function PrintBook(book: Book): void {
+    console.log(book.title + ' by ' + book.author);
+}
 
-let checkedoutBooks = GetTitles(true);
-checkedoutBooks.forEach(title => console.log(title));
+let myBook: Book = {
+    id: 5,
+    title: 'Pride and Prejudice',
+    author: 'Jane Austen',
+    available: true,
+    category: Category.Fiction,
+    //year: '1813',
+    //copies: 3
+    pages: 250,
+    markDamages: (reason: string) => console.log('Damaged: ' + reason)
+}
 
-let myBooks: string[] = CheckoutBooks('Thorne', 1);
-myBooks.forEach(title => console.log(title));
+// PrintBook(myBook);
+// myBook.markDamages('Missing back cover.');
 
-CreateCustomer('Bimal');
-CreateCustomer('Ajith', 30);
-CreateCustomer('Babu', 22, 'Thiruvananthapuram');
+let logDamage: DamageLogger;
+logDamage = (damage: string) => console.log('Damage reported: ' + damage);
+logDamage('Lot of damage.');
 
-let x: number;
-x = 5;
+// let hermansBooks = GetTitles('Herman Melville');
+// hermansBooks.forEach(title => console.log(title));
 
-let IdGenerator: (char: string, num: number) => string;
-IdGenerator = CreateCustomerID;
+// let checkedoutBooks = GetTitles(true);
+// checkedoutBooks.forEach(title => console.log(title));
 
-let myID: string = IdGenerator('Bimal ', 15);
-console.log(myID);
+// let myBooks: string[] = CheckoutBooks('Thorne', 1);
+// myBooks.forEach(title => console.log(title));
 
-LogFirstAvailable();
+// CreateCustomer('Bimal');
+// CreateCustomer('Ajith', 30);
+// CreateCustomer('Babu', 22, 'Thiruvananthapuram');
 
-let poetryBooks = GetBookTitlesByCategory(Category.Poetry);
-poetryBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val))
+// let x: number;
+// x = 5;
 
-const fictionBooks = GetBookTitlesByCategory();
-fictionBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val))
+// let IdGenerator: (char: string, num: number) => string;
+// IdGenerator = CreateCustomerID;
+
+// let myID: string = IdGenerator('Bimal ', 15);
+// console.log(myID);
+
+// LogFirstAvailable();
+
+// let poetryBooks = GetBookTitlesByCategory(Category.Poetry);
+// poetryBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val))
+
+// const fictionBooks = GetBookTitlesByCategory();
+// fictionBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val))
+
+let favoriteLibrarian: Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Sharon';
+favoriteLibrarian.assistCustomer('Lynda');
