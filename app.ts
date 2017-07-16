@@ -10,7 +10,7 @@ function GetAllBooks() {
     return books;
 }
 
-function LogFirstAvailable(books): void {
+function LogFirstAvailable(books = GetAllBooks()): void {
 
     let firstAvailable: string = '';
     let numberOfBooks: number = books.length;
@@ -29,7 +29,7 @@ function LogFirstAvailable(books): void {
 
 enum Category { Biography, Poetry, Fiction, History, Children }
 
-function GetBookTitlesByCategory(categoryFilter: Category): Array<string> {
+function GetBookTitlesByCategory(categoryFilter: Category = Category.Fiction): Array<string> {
     console.log('Getting books in category: ' + categoryFilter + ' - ' + Category[categoryFilter]);
 
     const allBooks = GetAllBooks();
@@ -60,6 +60,41 @@ function CreateCustomerID(name: string, id: number): string {
     return name + id;
 }
 
+function CreateCustomer(name: string, age?: number, city?: string): void {
+    console.log('Create customer ' + name);
+
+    if (age) {
+        console.log('Age: ' + age);
+    }
+
+    if (city) {
+        console.log('City: ' + city);
+    }
+}
+
+function CheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
+    console.log('Checking out books for ' + customer);
+
+    let booksCheckedOut: string[] = [];
+
+    for (let id of bookIDs) {
+        let book = GetBookByID(id);
+
+        if (book.available) {
+            booksCheckedOut.push(book.title);
+        }
+    }
+
+    return booksCheckedOut
+}
+
+let myBooks: string[] = CheckoutBooks('Thorne', 1);
+myBooks.forEach(title => console.log(title));
+
+CreateCustomer('Bimal');
+CreateCustomer('Ajith', 30);
+CreateCustomer('Babu', 22, 'Thiruvananthapuram');
+
 let x: number;
 x = 5;
 
@@ -69,5 +104,10 @@ IdGenerator = CreateCustomerID;
 let myID: string = IdGenerator('Bimal ', 15);
 console.log(myID);
 
-const fictionBooks = GetBookTitlesByCategory(Category.Fiction);
+LogFirstAvailable();
+
+let poetryBooks = GetBookTitlesByCategory(Category.Poetry);
+poetryBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val))
+
+const fictionBooks = GetBookTitlesByCategory();
 fictionBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val))
