@@ -1,6 +1,6 @@
 import { Category } from './enums';
 import { Book, DamageLogger, Person, Author, Librarian } from './interfaces';
-import { UniversityLibrarian, ReferenceItem } from './classes';
+import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
 
 function GetAllBooks(): Book[] {
 
@@ -173,8 +173,11 @@ let myBook: Book = {
 // favoriteLibrarian.name = 'Sharon';
 // favoriteLibrarian.assistCustomer('Lynda');
 
-let ref: ReferenceItem = new ReferenceItem('Facts and Figures', 2016);
+//let ref: ReferenceItem = new ReferenceItem('Facts and Figures', 2016);
 // ref.title = 'Facts and Figures';
 // ref.year = 2016;
-ref.printItem();
-console.log(ReferenceItem.department);
+// ref.printItem();
+// console.log(ReferenceItem.department);
+
+let refBook = new Encyclopedia('WorldPedia', 1900, 10);
+refBook.printItem();
