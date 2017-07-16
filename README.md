@@ -1,2 +1,2 @@
-# LibraryManager
+# Library Manager
 TypeScript Samples
