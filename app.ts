@@ -88,6 +88,38 @@ function CheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
     return booksCheckedOut
 }
 
+function GetTitles(author: string): string[];
+function GetTitles(available: boolean): string[];
+function GetTitles(bookProp: any): string[] {
+    const allBooks = GetAllBooks();
+    const foundTitles: string[] = [];
+
+    if (typeof bookProp == 'string') {
+        for (let book of allBooks) {
+
+            if (book.author === bookProp) {
+                foundTitles.push(book.title);
+            }
+        }
+    }
+    else if (typeof bookProp == 'boolean') {
+        for (let book of allBooks) {
+
+            if (book.available === bookProp) {
+                foundTitles.push(book.title);
+            }
+        }
+    }
+
+    return foundTitles;
+}
+
+let hermansBooks = GetTitles('Herman Melville');
+hermansBooks.forEach(title => console.log(title));
+
+let checkedoutBooks = GetTitles(true);
+checkedoutBooks.forEach(title => console.log(title));
+
 let myBooks: string[] = CheckoutBooks('Thorne', 1);
 myBooks.forEach(title => console.log(title));
 
