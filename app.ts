@@ -173,7 +173,8 @@ let myBook: Book = {
 // favoriteLibrarian.name = 'Sharon';
 // favoriteLibrarian.assistCustomer('Lynda');
 
-let ref = new ReferenceItem();
-ref.title = 'Facts and Figures';
-ref.year = 2016;
+let ref: ReferenceItem = new ReferenceItem('Facts and Figures', 2016);
+// ref.title = 'Facts and Figures';
+// ref.year = 2016;
 ref.printItem();
+console.log(ReferenceItem.department);

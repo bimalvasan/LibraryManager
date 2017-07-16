@@ -11,16 +11,25 @@ class UniversityLibrarian implements Librarian {
 }
 
 class ReferenceItem {
-    title: string;
-    year: number;
+    // title: string;
+    // year: number;
+    private _publisher: string;
+    static department: string = 'Research';
 
-    constructor() {
+    constructor(public title: string, private year: number) {
         console.log('Creating a new ReferenceItem...');
     }
 
     printItem(): void {
         console.log(`${this.title} was published in ${this.year}.`);
+    }
 
+    get publisher(): string {
+        return this._publisher.toUpperCase();
+    }
+
+    set publisher(newPublisher: string) {
+        this._publisher = newPublisher;
     }
 }
 
