@@ -179,6 +179,15 @@ let myBook: Book = {
 // ref.printItem();
 // console.log(ReferenceItem.department);
 
-let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
-refBook.printItem();
-refBook.printCitation();
+// let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
+// refBook.printItem();
+// refBook.printCitation();
+
+let Newspaper = class extends ReferenceItem{
+    printCitation(): void{
+        console.log(`Newspaper: ${this.title}`);
+    }
+}
+
+let myPaper = new Newspaper('The Gazette', 2016);
+myPaper.printCitation();
