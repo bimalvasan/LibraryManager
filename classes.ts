@@ -10,7 +10,7 @@ class UniversityLibrarian implements Librarian {
     }
 }
 
-class ReferenceItem {
+abstract class ReferenceItem {
     // title: string;
     // year: number;
     private _publisher: string;
@@ -31,6 +31,8 @@ class ReferenceItem {
     set publisher(newPublisher: string) {
         this._publisher = newPublisher;
     }
+
+    abstract printCitation(): void;
 }
 
 class Encyclopedia extends ReferenceItem {
@@ -38,9 +40,13 @@ class Encyclopedia extends ReferenceItem {
         super(newTitle, newYear);
     }
 
-    printItem():void{
+    printItem(): void {
         super.printItem();
         console.log(`Edition: ${this.edition} (${this.year})`);
+    }
+
+    printCitation(): void {
+        console.log(`${this.title} - ${this.year}`);
     }
 }
 

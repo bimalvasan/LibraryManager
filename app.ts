@@ -179,5 +179,6 @@ let myBook: Book = {
 // ref.printItem();
 // console.log(ReferenceItem.department);
 
-let refBook = new Encyclopedia('WorldPedia', 1900, 10);
+let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
 refBook.printItem();
+refBook.printCitation();
