@@ -1,0 +1,23 @@
+{
+  "name": "LibraryManager",
+  "version": "1.0.0",
+  "description": "TypeScript Samples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bimalvasan/LibraryManager.git"
+  },
+  "keywords": [],
+  "author": "Bimal Vasan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bimalvasan/LibraryManager/issues"
+  },
+  "homepage": "https://github.com/bimalvasan/LibraryManager#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

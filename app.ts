@@ -3,7 +3,11 @@ import { Book, Logger, Person, Author, Librarian, Magazine } from './interfaces'
 import { UniversityLibrarian, ReferenceItem } from './classes';
 import { CalculateLateFee as CalcFee, MaxBooksAllowed, Purge } from './lib/utilityFuctions';
 import refBook from './encyclopedia';
-import Shelf from './shelf'
+import Shelf from './shelf';
+import * as _ from 'lodash';
+
+let snakeCaseTitle = _.snakeCase('From whom the Bell Tolls');
+console.log(snakeCaseTitle);
 
 function GetAllBooks(): Book[] {
 
